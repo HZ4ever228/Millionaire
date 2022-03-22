@@ -49,23 +49,33 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwq-ks-JOV">
+                                <rect key="frame" x="30" y="552" width="354" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.01176470611" green="0.0078431377190000002" blue="0.1843137443" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gwq-ks-JOV" secondAttribute="trailing" constant="30" id="4FM-wX-wnP"/>
                             <constraint firstItem="a8i-Zo-wP8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="5kU-Af-4dR"/>
                             <constraint firstItem="4vH-OV-vjI" firstAttribute="top" secondItem="wvD-P4-tHv" secondAttribute="bottom" constant="20" id="DkB-IU-lqQ"/>
                             <constraint firstItem="iDq-Yj-906" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FAt-vL-f3p"/>
+                            <constraint firstItem="gwq-ks-JOV" firstAttribute="top" secondItem="iDq-Yj-906" secondAttribute="bottom" constant="30" id="NX2-lh-9Hf"/>
                             <constraint firstItem="wvD-P4-tHv" firstAttribute="top" secondItem="a8i-Zo-wP8" secondAttribute="bottom" constant="40" id="RVt-xG-J19"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wvD-P4-tHv" secondAttribute="trailing" constant="100" id="SDX-fE-wVn"/>
                             <constraint firstItem="iDq-Yj-906" firstAttribute="top" secondItem="4vH-OV-vjI" secondAttribute="bottom" constant="20" id="YPD-aJ-OZQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="a8i-Zo-wP8" secondAttribute="trailing" constant="30" id="anN-SO-GSE"/>
+                            <constraint firstItem="gwq-ks-JOV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="eiR-wC-B5u"/>
                             <constraint firstItem="a8i-Zo-wP8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="emU-R8-QBb"/>
                             <constraint firstItem="4vH-OV-vjI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lps-Cj-vbD"/>
                             <constraint firstItem="wvD-P4-tHv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="wlf-lw-whq"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lastResultLabel" destination="gwq-ks-JOV" id="RrU-Iw-7Zw"/>
                         <outlet property="nameTextField" destination="a8i-Zo-wP8" id="OcE-48-JJU"/>
                     </connections>
                 </viewController>

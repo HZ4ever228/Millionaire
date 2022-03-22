@@ -10,6 +10,7 @@ import UIKit
 class GameViewController: UIViewController {
     
     let game = Game.shared
+    var delegate: LastGameResultProtocol?
     
     @IBOutlet weak var fiftyFiftyButton: UIButton!
     @IBOutlet weak var callToFriendButton: UIButton!
@@ -41,6 +42,7 @@ class GameViewController: UIViewController {
         
         dismiss(animated: true, completion: {
             self.game.addRecord(record: Record(score: self.gameSession?.score, name: self.gameSession?.name))
+            self.delegate?.returnLastGameResult(gameSession: self.gameSession)
             self.gameSession = nil
         })
     }
@@ -125,6 +127,7 @@ class GameViewController: UIViewController {
             } else {
                 dismiss(animated: true, completion: {
                     self.game.addRecord(record: Record(score: self.gameSession?.score, name: self.gameSession?.name))
+                    self.delegate?.returnLastGameResult(gameSession: self.gameSession)
                     self.gameSession = nil
                 })
             }
@@ -211,4 +214,10 @@ class GameViewController: UIViewController {
         }
     }
     
+}
+
+//MARK: - Extensions
+
+protocol LastGameResultProtocol {
+    func returnLastGameResult(gameSession: GameSession?)
 }
