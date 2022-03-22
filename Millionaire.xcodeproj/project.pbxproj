@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4321374E27E9DE280007810D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321374D27E9DE280007810D /* AppDelegate.swift */; };
 		4321375027E9DE280007810D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321374F27E9DE280007810D /* SceneDelegate.swift */; };
-		4321375227E9DE280007810D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321375127E9DE280007810D /* ViewController.swift */; };
+		4321375227E9DE280007810D /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321375127E9DE280007810D /* MainMenuViewController.swift */; };
 		4321375527E9DE280007810D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4321375327E9DE280007810D /* Main.storyboard */; };
 		4321375827E9DE280007810D /* Millionaire.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4321375627E9DE280007810D /* Millionaire.xcdatamodeld */; };
 		4321375A27E9DE290007810D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4321375927E9DE290007810D /* Assets.xcassets */; };
@@ -17,6 +17,14 @@
 		4321376827E9DE290007810D /* MillionaireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321376727E9DE290007810D /* MillionaireTests.swift */; };
 		4321377227E9DE290007810D /* MillionaireUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321377127E9DE290007810D /* MillionaireUITests.swift */; };
 		4321377427E9DE290007810D /* MillionaireUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321377327E9DE290007810D /* MillionaireUITestsLaunchTests.swift */; };
+		4321378227E9E44B0007810D /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321378127E9E44B0007810D /* Question.swift */; };
+		4321378527E9F3100007810D /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321378427E9F3100007810D /* ScoreTableViewCell.swift */; };
+		4321378827E9F44D0007810D /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321378727E9F44D0007810D /* ScoreViewController.swift */; };
+		4321378A27EA02330007810D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321378927EA02330007810D /* GameViewController.swift */; };
+		4321378C27EA2B7F0007810D /* GameSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321378B27EA2B7F0007810D /* GameSession.swift */; };
+		4321378E27EA2DD00007810D /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321378D27EA2DD00007810D /* Record.swift */; };
+		4321379027EA35A30007810D /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321378F27EA35A30007810D /* Game.swift */; };
+		4321379327EA446E0007810D /* RecordsCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321379227EA446E0007810D /* RecordsCaretaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +48,7 @@
 		4321374A27E9DE280007810D /* Millionaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Millionaire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4321374D27E9DE280007810D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4321374F27E9DE280007810D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4321375127E9DE280007810D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4321375127E9DE280007810D /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		4321375427E9DE280007810D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4321375727E9DE280007810D /* Millionaire.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Millionaire.xcdatamodel; sourceTree = "<group>"; };
 		4321375927E9DE290007810D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +59,14 @@
 		4321376D27E9DE290007810D /* MillionaireUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MillionaireUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4321377127E9DE290007810D /* MillionaireUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MillionaireUITests.swift; sourceTree = "<group>"; };
 		4321377327E9DE290007810D /* MillionaireUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MillionaireUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4321378127E9E44B0007810D /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		4321378427E9F3100007810D /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
+		4321378727E9F44D0007810D /* ScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
+		4321378927EA02330007810D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		4321378B27EA2B7F0007810D /* GameSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSession.swift; sourceTree = "<group>"; };
+		4321378D27EA2DD00007810D /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		4321378F27EA35A30007810D /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		4321379227EA446E0007810D /* RecordsCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsCaretaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +119,9 @@
 			children = (
 				4321374D27E9DE280007810D /* AppDelegate.swift */,
 				4321374F27E9DE280007810D /* SceneDelegate.swift */,
-				4321375127E9DE280007810D /* ViewController.swift */,
+				4321379127EA442E0007810D /* RecordsCareTaker */,
+				4321378027E9E4320007810D /* Sourses */,
+				4321378327E9F2DE0007810D /* UI */,
 				4321375327E9DE280007810D /* Main.storyboard */,
 				4321375927E9DE290007810D /* Assets.xcassets */,
 				4321375B27E9DE290007810D /* LaunchScreen.storyboard */,
@@ -128,6 +146,44 @@
 				4321377327E9DE290007810D /* MillionaireUITestsLaunchTests.swift */,
 			);
 			path = MillionaireUITests;
+			sourceTree = "<group>";
+		};
+		4321378027E9E4320007810D /* Sourses */ = {
+			isa = PBXGroup;
+			children = (
+				4321378127E9E44B0007810D /* Question.swift */,
+				4321378F27EA35A30007810D /* Game.swift */,
+				4321378B27EA2B7F0007810D /* GameSession.swift */,
+				4321378D27EA2DD00007810D /* Record.swift */,
+			);
+			path = Sourses;
+			sourceTree = "<group>";
+		};
+		4321378327E9F2DE0007810D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				4321378627E9F3160007810D /* Cells */,
+				4321375127E9DE280007810D /* MainMenuViewController.swift */,
+				4321378927EA02330007810D /* GameViewController.swift */,
+				4321378727E9F44D0007810D /* ScoreViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		4321378627E9F3160007810D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4321378427E9F3100007810D /* ScoreTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4321379127EA442E0007810D /* RecordsCareTaker */ = {
+			isa = PBXGroup;
+			children = (
+				4321379227EA446E0007810D /* RecordsCaretaker.swift */,
+			);
+			path = RecordsCareTaker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,9 +317,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4321375227E9DE280007810D /* ViewController.swift in Sources */,
+				4321378827E9F44D0007810D /* ScoreViewController.swift in Sources */,
+				4321379327EA446E0007810D /* RecordsCaretaker.swift in Sources */,
+				4321378C27EA2B7F0007810D /* GameSession.swift in Sources */,
+				4321378E27EA2DD00007810D /* Record.swift in Sources */,
+				4321378227E9E44B0007810D /* Question.swift in Sources */,
+				4321375227E9DE280007810D /* MainMenuViewController.swift in Sources */,
 				4321375827E9DE280007810D /* Millionaire.xcdatamodeld in Sources */,
+				4321379027EA35A30007810D /* Game.swift in Sources */,
+				4321378A27EA02330007810D /* GameViewController.swift in Sources */,
 				4321374E27E9DE280007810D /* AppDelegate.swift in Sources */,
+				4321378527E9F3100007810D /* ScoreTableViewCell.swift in Sources */,
 				4321375027E9DE280007810D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
