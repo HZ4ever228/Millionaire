@@ -49,27 +49,10 @@ struct Question {
     
 }
 
-enum QuestionsEnum {
-    
-    case firstQuestion
-    case secondQuestion
-    case thirdQuestion
-    case fourthQuestion
-    case fifthQuestion
-    
-    var question: Question {
-        switch self {
-        case .firstQuestion:
-            return Question(question: "Кто убежал от дедушки и от бабушки?", firstAnswer: "Колобок", secondAnswer: "Рогалик", thirdAnswer: "Бублик", fourthAnswer: "Пирожок", correctAnswer: "Колобок")
-        case .secondQuestion:
-            return Question(question: "Столица канады?", firstAnswer: "Монреаль", secondAnswer: "Торонто", thirdAnswer: "Оттава", fourthAnswer: "Канада", correctAnswer: "Оттава")
-        case .thirdQuestion:
-            return Question(question: "Висит груша - нельзя скушать?", firstAnswer: "Груша", secondAnswer: "Яблоко", thirdAnswer: "Подушка", fourthAnswer: "Лампочка", correctAnswer: "Лампочка")
-        case .fourthQuestion:
-            return Question(question: "Как звали главного героя фильма 'Матрица'?", firstAnswer: "Нео", secondAnswer: "Нивеа", thirdAnswer: "Нива", fourthAnswer: "Нина", correctAnswer: "Нео")
-        case .fifthQuestion:
-            return Question(question: "Что дает корова?", firstAnswer: "Пепси", secondAnswer: "Молоко", thirdAnswer: "Виски", fourthAnswer: "Чай", correctAnswer: "Молоко")
-        }
-    }
-    
+class DefaultQuestions {
+    let firstQuestion = Question(question: "Кто убежал от дедушки и от бабушки?", firstAnswer: "Колобок", secondAnswer: "Рогалик", thirdAnswer: "Бублик", fourthAnswer: "Пирожок", correctAnswer: "Колобок")
+    let secondQuestion = Question(question: "Столица канады?", firstAnswer: "Монреаль", secondAnswer: "Торонто", thirdAnswer: "Оттава", fourthAnswer: "Канада", correctAnswer: "Оттава")
+    let thirdQuestion = Question(question: "Висит груша - нельзя скушать?", firstAnswer: "Груша", secondAnswer: "Яблоко", thirdAnswer: "Подушка", fourthAnswer: "Лампочка", correctAnswer: "Лампочка")
+    let fourthQuestion = Question(question: "Как звали главного героя фильма 'Матрица'?", firstAnswer: "Нео", secondAnswer: "Нивеа", thirdAnswer: "Нива", fourthAnswer: "Нина", correctAnswer: "Нео")
+    let fifthQuestion = Question(question: "Что дает корова?", firstAnswer: "Пепси", secondAnswer: "Молоко", thirdAnswer: "Виски", fourthAnswer: "Чай", correctAnswer: "Молоко")
 }

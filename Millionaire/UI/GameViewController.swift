@@ -16,6 +16,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var callToFriendButton: UIButton!
     @IBOutlet weak var hallHelpButton: UIButton!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var currentPersentLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var firstAnwerButton: UIButton!
     @IBOutlet weak var secondAnswerButton: UIButton!
@@ -31,20 +32,14 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureActualQuestion()
-        gameSession?.name = game.name ?? ""
-        game.gameSession = gameSession
+        configureLaunching()
+        
     }
     
     //MARK: - Actions
     
     @IBAction func exitButtonAction(_ sender: Any) {
-        
-        dismiss(animated: true, completion: {
-            self.game.addRecord(record: Record(score: self.gameSession?.score, name: self.gameSession?.name))
-            self.delegate?.returnLastGameResult(gameSession: self.gameSession)
-            self.gameSession = nil
-        })
+        endGame()
     }
     
     @IBAction func firstAnswerButtonAction(_ sender: Any) {
@@ -61,7 +56,7 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func fiftyFiftyButtonAction(_ sender: Any) {
-        guard let actualQuestion = gameSession?.question else { return }
+        guard let actualQuestion = gameSession?.questions?.first else { return }
         configureGameForFiftyFifty(answers: actualQuestion.fiftyfifty())
         gameSession?.isFiftyFifty = false
         gameSession?.helpsCount -= 1
@@ -78,40 +73,53 @@ class GameViewController: UIViewController {
         gameSession?.helpsCount -= 1
     }
     
-    
-    private func configureActualQuestion() {
-        guard let score = gameSession?.score else { return }
-        
-        switch score {
-        case 0:
-            gameSession?.question = QuestionsEnum.firstQuestion.question
-        case 10:
-            gameSession?.question = QuestionsEnum.secondQuestion.question
-        case 20:
-            gameSession?.question = QuestionsEnum.thirdQuestion.question
-        case 30:
-            gameSession?.question = QuestionsEnum.fourthQuestion.question
-        case 40:
-            gameSession?.question = QuestionsEnum.fifthQuestion.question
-        default:
-            break
+    private func configureLaunching() {
+        game.gameSession = gameSession
+        gameSession?.name = game.name
+        gameSession?.questionsStrategy = game.questionsStrategy
+        if let questionsStrategy = gameSession?.questionsStrategy {
+            switch questionsStrategy {
+            case .random:
+                gameSession?.questions =  RandomQuestionSortStrategy().createQuestionsArray()
+            case .sequensial:
+                gameSession?.questions = SequentialQuestionsSortStrategy().createQuestionsArray()
+            }
         }
-        configureGame()
+        gameSession?.configurePersentPerQuestion()
+        
+        gameSession?.score.addObserver(self, options: [.new, .initial], closure: { [weak self] (score, _) in
+            self?.scoreLabel.text = "Cчет: \(score)"
+        })
+        
+        gameSession?.currentPersent.addObserver(self, options: [.new, .initial], closure: { [weak self] (currentPersent, _) in
+            self?.currentPersentLabel.text = "Всего: \(currentPersent)% "
+        })
+        
+
+        configureActualQuestion()
+        
     }
     
-    private func configureGame() {
-        guard let gameSession = gameSession, let question = gameSession.question else { return }
-        scoreLabel.text = "счет: \(gameSession.score)"
-        
-        if !callToFriendView.isHidden {
-            callToFriendView.isHidden = true
+    private func configureActualQuestion() {
+        if gameSession?.questions?.count ?? 0 > 0 {
+            configureGame(question: gameSession?.questions?.first)
+        } else {
+            print("trere is no qustions")
+            endGame()
         }
+        
+    }
+    
+    private func configureGame(question: Question?) {
+        guard let gameSession = gameSession, let question = question else { return }
+        callToFriendView.isHidden = true
         
         callToFriendButton.isHidden = !gameSession.isFriendCall
         fiftyFiftyButton.isHidden = !gameSession.isFiftyFifty
         hallHelpButton.isHidden = !gameSession.isHallHelp
 
         unhideAndUncolorUnswerButtons()
+        
         questionLabel.text = question.question
         firstAnwerButton.setTitle(question.firstAnswer, for: .normal)
         secondAnswerButton.setTitle(question.secondAnswer, for: .normal)
@@ -120,18 +128,25 @@ class GameViewController: UIViewController {
     }
     
     private func isAnswerRigth(button: UIButton) {
-        if let answer = button.titleLabel?.text, let question = gameSession?.question {
-            if question.isAnserRight(userAnswer: answer) {
-                gameSession?.score += 10
-                configureActualQuestion()
-            } else {
-                dismiss(animated: true, completion: {
-                    self.game.addRecord(record: Record(score: self.gameSession?.score, name: self.gameSession?.name))
-                    self.delegate?.returnLastGameResult(gameSession: self.gameSession)
-                    self.gameSession = nil
-                })
-            }
+        guard let answer = button.titleLabel?.text, let question = gameSession?.questions?.first else { return }
+        
+        if question.isAnserRight(userAnswer: answer) {
+            gameSession?.currentPersent.value += gameSession?.persentPerQuestion ?? 0
+            gameSession?.score.value += 10
+            gameSession?.questions?.removeFirst()
+            configureActualQuestion()
+        } else {
+            print("user mistaked - game over")
+            endGame()
         }
+    }
+    
+    private func endGame() {
+        dismiss(animated: true, completion: {
+            self.game.addRecord(record: Record(score: self.gameSession?.score.value, name: self.gameSession?.name))
+            self.delegate?.returnLastGameResult(gameSession: self.gameSession)
+            self.gameSession = nil
+        })
     }
     
     private func configureGameForFiftyFifty(answers: [String]) {
@@ -182,8 +197,8 @@ class GameViewController: UIViewController {
             self.callToFriendView.isHidden = false
             self.callToFriendLabel.text = "Звоним другу..."
             self.timerCallToFriend = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
-                if let answer = self.gameSession?.question?.callToFriend() {
-                    if answer != self.gameSession?.question?.incorectAnswer {
+                if let answer = self.gameSession?.questions?.first?.callToFriend() {
+                    if answer != self.gameSession?.questions?.first?.incorectAnswer {
                         self.callToFriendLabel.text = "Я думаю, что это \(answer)"
                     } else {
                         self.callToFriendLabel.text = answer
@@ -196,7 +211,7 @@ class GameViewController: UIViewController {
     }
     
     private func hallHelp() {
-        guard let actualQuestion = gameSession?.question else { return }
+        guard let actualQuestion = gameSession?.questions?.first else { return }
         let hallAnswer = actualQuestion.hallhelp()
         timerCallToFriend = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
             if self.isButtonWithAnswer(button: self.firstAnwerButton, answer: hallAnswer) {

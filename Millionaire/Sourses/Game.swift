@@ -10,6 +10,8 @@ import Foundation
 class Game {
     
     let recordsCaretaker = RecordsCaretaker()
+    let nameCaretaker = NameCaretaker()
+    let questionsSortStrategyCaretaker = QuestionsSortStrategyCaretaker()
     
     static let shared = Game()
     
@@ -19,14 +21,26 @@ class Game {
         }
     }
     
-    private init() {
-        records = recordsCaretaker.retrive()
+    private(set) var name: String = "" {
+        didSet {
+            nameCaretaker.save(name: name)
+        }
     }
     
-    var name: String?
-    var gameSession: GameSession?
-
+    private(set) var questionsStrategy: QuestionsStrategies = .sequensial {
+        didSet {
+            questionsSortStrategyCaretaker.save(strategy: questionsStrategy)
+        }
+    }
     
+    private init() {
+        records = recordsCaretaker.retrive()
+        name = nameCaretaker.retrive()
+        questionsStrategy = questionsSortStrategyCaretaker.retrive()
+    }
+    
+    
+    var gameSession: GameSession?
     
     func addRecord(record: Record) {
         records.append(record)
@@ -34,5 +48,13 @@ class Game {
     
     func clearRecords() {
         records = []
+    }
+    
+    func setName(newName: String) {
+        name = newName
+    }
+    
+    func changeQustionSortStrategy(strategy: QuestionsStrategies) {
+        questionsStrategy = strategy
     }
 }
