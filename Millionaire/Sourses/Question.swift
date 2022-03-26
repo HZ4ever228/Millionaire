@@ -39,7 +39,7 @@ struct Question {
     }
     
     func hallhelp() -> String {
-        let hallAnswers = [correctAnswer, firstAnswer, correctAnswer, secondAnswer, correctAnswer, thirdAnswer, correctAnswer, fourthAnswer]
+        let hallAnswers = [correctAnswer, correctAnswer, firstAnswer, correctAnswer, correctAnswer, secondAnswer, correctAnswer, correctAnswer, thirdAnswer, correctAnswer, correctAnswer, fourthAnswer]
         return hallAnswers.randomElement() ?? "ошибка"
     }
     

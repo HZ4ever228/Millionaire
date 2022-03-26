@@ -17,9 +17,15 @@ class MainMenuViewController: UIViewController {
             nameTextField.text = game.name
         }
     }
+    @IBOutlet weak var lastResultLabel: UILabel! {
+        didSet {
+            lastResultLabel.isHidden = true
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -33,6 +39,7 @@ class MainMenuViewController: UIViewController {
             guard let destanation = segue.destination as? ScoreViewController else { return }
         case "segueToGameViewController":
             guard let destanation = segue.destination as? GameViewController else { return }
+            destanation.delegate = self
         default:
             break
         }
@@ -51,4 +58,14 @@ extension MainMenuViewController: UITextFieldDelegate {
         }
     }
 }
+
+extension MainMenuViewController: LastGameResultProtocol {
+    func returnLastGameResult(gameSession: GameSession?) {
+        if let gameSession = gameSession {
+            lastResultLabel.isHidden = false
+            lastResultLabel.text = "Последний результат: \(gameSession.score)"
+        }
+    }
+}
+
 
