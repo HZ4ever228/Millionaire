@@ -33,7 +33,6 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLaunching()
-        
     }
     
     //MARK: - Actions
@@ -56,36 +55,62 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func fiftyFiftyButtonAction(_ sender: Any) {
-        guard let actualQuestion = gameSession?.questions?.first else { return }
-        configureGameForFiftyFifty(answers: actualQuestion.fiftyfifty())
+        guard let answers = gameSession?.actualQuestionFacade?.fiftyfifty() else { return }
+        if !isButtonWithSomeOfTheAnswers(answers: answers, button: firstAnwerButton) {
+            firstAnwerButton.isHidden = true
+        }
+        if !isButtonWithSomeOfTheAnswers(answers: answers, button: secondAnswerButton) {
+            secondAnswerButton.isHidden = true
+        }
+        if !isButtonWithSomeOfTheAnswers(answers: answers, button: thirdAnswerButton) {
+            thirdAnswerButton.isHidden = true
+        }
+        if !isButtonWithSomeOfTheAnswers(answers: answers, button: fourthAnswerButton) {
+            fourthAnswerButton.isHidden = true
+        }
         gameSession?.isFiftyFifty = false
         gameSession?.helpsCount -= 1
     }
     
     @IBAction func callToFriendButtonAction(_ sender: Any) {
-        callTofriend()
-        gameSession?.isFriendCall = false
-        gameSession?.helpsCount -= 1
+        timerCallToFriend = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+            self.callToFriendView.isHidden = false
+            self.callToFriendLabel.text = "Звоним другу..."
+            self.timerCallToFriend = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+                if let answer = self.gameSession?.actualQuestionFacade?.callToFriend() {
+                    if answer != self.gameSession?.actualQuestionFacade?.getIncorrectAnswer() {
+                        self.callToFriendLabel.text = "Я думаю, что это \(answer)"
+                    } else {
+                        self.callToFriendLabel.text = answer
+                    }
+                    self.gameSession?.isFriendCall = false
+                    self.gameSession?.helpsCount -= 1
+                }
+            }
+        }
+        
     }
     @IBAction func hallHelpButtonAction(_ sender: Any) {
-        hallHelp()
-        gameSession?.isHallHelp = false
-        gameSession?.helpsCount -= 1
+        guard let hallAnswer = gameSession?.actualQuestionFacade?.hallhelp() else { return }
+        timerCallToFriend = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+            if self.isButtonWithAnswer(button: self.firstAnwerButton, answer: hallAnswer) {
+                self.firstAnwerButton.layer.backgroundColor = CGColor(red: 0, green: 1, blue: 0, alpha: 0.5)
+            } else if self.isButtonWithAnswer(button: self.secondAnswerButton, answer: hallAnswer) {
+                self.secondAnswerButton.layer.backgroundColor = CGColor(red: 0, green: 1, blue: 0, alpha: 0.5)
+            } else if self.isButtonWithAnswer(button: self.thirdAnswerButton, answer: hallAnswer) {
+                self.thirdAnswerButton.layer.backgroundColor = CGColor(red: 0, green: 1, blue: 0, alpha: 0.5)
+            } else if self.isButtonWithAnswer(button: self.fourthAnswerButton, answer: hallAnswer) {
+                self.fourthAnswerButton.layer.backgroundColor = CGColor(red: 0, green: 1, blue: 0, alpha: 0.5)
+            }
+            self.gameSession?.isHallHelp = false
+            self.gameSession?.helpsCount -= 1
+        }
     }
     
     private func configureLaunching() {
         game.gameSession = gameSession
         gameSession?.name = game.name
-        gameSession?.questionsStrategy = game.questionsStrategy
-        if let questionsStrategy = gameSession?.questionsStrategy {
-            switch questionsStrategy {
-            case .random:
-                gameSession?.questions =  RandomQuestionSortStrategy().createQuestionsArray()
-            case .sequensial:
-                gameSession?.questions = SequentialQuestionsSortStrategy().createQuestionsArray()
-            }
-        }
-        gameSession?.configurePersentPerQuestion()
+        gameSession?.firstConfigure(questionsStrategy: game.questionsStrategy)
         
         gameSession?.score.addObserver(self, options: [.new, .initial], closure: { [weak self] (score, _) in
             self?.scoreLabel.text = "Cчет: \(score)"
@@ -96,22 +121,22 @@ class GameViewController: UIViewController {
         })
         
 
-        configureActualQuestion()
+        configureActualQuestionOrEndGame()
         
     }
     
-    private func configureActualQuestion() {
-        if gameSession?.questions?.count ?? 0 > 0 {
-            configureGame(question: gameSession?.questions?.first)
+    private func configureActualQuestionOrEndGame() {
+        if let questions = gameSession?.questions, !questions.isEmpty {
+            gameSession?.configureActualQuestion()
+            configureGame()
         } else {
             print("trere is no qustions")
             endGame()
         }
-        
     }
     
-    private func configureGame(question: Question?) {
-        guard let gameSession = gameSession, let question = question else { return }
+    private func configureGame() {
+        guard let gameSession = gameSession, let question = gameSession.actualQuestionFacade?.question else { return }
         callToFriendView.isHidden = true
         
         callToFriendButton.isHidden = !gameSession.isFriendCall
@@ -128,13 +153,12 @@ class GameViewController: UIViewController {
     }
     
     private func isAnswerRigth(button: UIButton) {
-        guard let answer = button.titleLabel?.text, let question = gameSession?.questions?.first else { return }
-        
-        if question.isAnserRight(userAnswer: answer) {
+        guard let answer = button.titleLabel?.text, let facade = gameSession?.actualQuestionFacade else { return }
+        if facade.isAnserRight(userAnswer: answer) {
             gameSession?.currentPersent.value += gameSession?.persentPerQuestion ?? 0
             gameSession?.score.value += 10
             gameSession?.questions?.removeFirst()
-            configureActualQuestion()
+            configureActualQuestionOrEndGame()
         } else {
             print("user mistaked - game over")
             endGame()
@@ -147,21 +171,6 @@ class GameViewController: UIViewController {
             self.delegate?.returnLastGameResult(gameSession: self.gameSession)
             self.gameSession = nil
         })
-    }
-    
-    private func configureGameForFiftyFifty(answers: [String]) {
-        if !isButtonWithSomeOfTheAnswers(answers: answers, button: firstAnwerButton) {
-            firstAnwerButton.isHidden = true
-        }
-        if !isButtonWithSomeOfTheAnswers(answers: answers, button: secondAnswerButton) {
-            secondAnswerButton.isHidden = true
-        }
-        if !isButtonWithSomeOfTheAnswers(answers: answers, button: thirdAnswerButton) {
-            thirdAnswerButton.isHidden = true
-        }
-        if !isButtonWithSomeOfTheAnswers(answers: answers, button: fourthAnswerButton) {
-            fourthAnswerButton.isHidden = true
-        }
     }
     
     private func isButtonWithSomeOfTheAnswers(answers: [String], button: UIButton) -> Bool {
@@ -190,43 +199,6 @@ class GameViewController: UIViewController {
         thirdAnswerButton.layer.backgroundColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0)
         fourthAnswerButton.isHidden = false
         fourthAnswerButton.layer.backgroundColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0)
-    }
-    
-    private func callTofriend() {
-        timerCallToFriend = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-            self.callToFriendView.isHidden = false
-            self.callToFriendLabel.text = "Звоним другу..."
-            self.timerCallToFriend = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
-                if let answer = self.gameSession?.questions?.first?.callToFriend() {
-                    if answer != self.gameSession?.questions?.first?.incorectAnswer {
-                        self.callToFriendLabel.text = "Я думаю, что это \(answer)"
-                    } else {
-                        self.callToFriendLabel.text = answer
-                    }
-                } else {
-                    print("ошибка callTofriend()")
-                }
-            }
-        }
-    }
-    
-    private func hallHelp() {
-        guard let actualQuestion = gameSession?.questions?.first else { return }
-        let hallAnswer = actualQuestion.hallhelp()
-        timerCallToFriend = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
-            if self.isButtonWithAnswer(button: self.firstAnwerButton, answer: hallAnswer) {
-                self.firstAnwerButton.layer.backgroundColor = CGColor(red: 0, green: 1, blue: 0, alpha: 0.5)
-            }
-            if self.isButtonWithAnswer(button: self.secondAnswerButton, answer: hallAnswer) {
-                self.secondAnswerButton.layer.backgroundColor = CGColor(red: 0, green: 1, blue: 0, alpha: 0.5)
-            }
-            if self.isButtonWithAnswer(button: self.thirdAnswerButton, answer: hallAnswer) {
-                self.thirdAnswerButton.layer.backgroundColor = CGColor(red: 0, green: 1, blue: 0, alpha: 0.5)
-            }
-            if self.isButtonWithAnswer(button: self.fourthAnswerButton, answer: hallAnswer) {
-                self.fourthAnswerButton.layer.backgroundColor = CGColor(red: 0, green: 1, blue: 0, alpha: 0.5)
-            }
-        }
     }
     
 }

@@ -7,46 +7,13 @@
 
 import Foundation
 
-struct Question {
+struct Question: Codable {
     let question: String
     let firstAnswer: String
     let secondAnswer: String
     let thirdAnswer: String
     let fourthAnswer: String
     let correctAnswer: String
-    let incorectAnswer = "Ало! Ало! Кто это? связь плохая... пшшшшш"
-    
-    func fiftyfifty() -> [String] {
-        let allAnswers = [firstAnswer, secondAnswer, thirdAnswer, fourthAnswer]
-        var answers: [String] = []
-        for answer in allAnswers {
-            if answer == correctAnswer {
-                answers.append(answer)
-            } else if answers.count < 2, answers.contains(where: {$0 == correctAnswer}) {
-                answers.append(answer)
-            } else if answers.count == 0 {
-                answers.append(answer)
-            }
-        }
-        return answers
-    }
-    
-    func callToFriend() -> String {
-        var friendAnswers = fiftyfifty()
-        friendAnswers.append(incorectAnswer)
-        
-        return friendAnswers.randomElement() ?? "ошибка"
-    }
-    
-    func hallhelp() -> String {
-        let hallAnswers = [correctAnswer, correctAnswer, firstAnswer, correctAnswer, correctAnswer, secondAnswer, correctAnswer, correctAnswer, thirdAnswer, correctAnswer, correctAnswer, fourthAnswer]
-        return hallAnswers.randomElement() ?? "ошибка"
-    }
-    
-    func isAnserRight(userAnswer: String) -> Bool {
-        return userAnswer == correctAnswer
-    }
-    
 }
 
 class DefaultQuestions {

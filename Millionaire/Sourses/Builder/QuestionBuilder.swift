@@ -8,27 +8,14 @@
 import Foundation
 
 class QuestionBuilder {
-    private(set) var questions: [Question] = []
+    
+    let game = Game.shared
+    
     private(set) var question: String = ""
     private(set) var firstAnswer: String = ""
     private(set) var secondAnswer: String = ""
     private(set) var thirdAnswer: String = ""
     private(set) var fourthAnswer: String = ""
-    private(set) var correctAnswer: String = ""
-    
-    func build() {
-        let question = Question(question: question,
-                        firstAnswer: firstAnswer,
-                        secondAnswer: secondAnswer,
-                        thirdAnswer: thirdAnswer,
-                        fourthAnswer: fourthAnswer,
-                        correctAnswer: correctAnswer)
-        questions.append(question)
-    }
-    
-    func buildQustionsArray() -> [Question] {
-        return questions
-    }
     
     func addQuestion(_ question: String) {
         self.question = question
@@ -50,7 +37,35 @@ class QuestionBuilder {
         self.fourthAnswer = fourthAnswer
     }
     
-    func addCorrectAnswer(_ correctAnswer: String) {
-        self.correctAnswer = correctAnswer
+    func isQuestionReadyForBuild() -> Bool {
+        if self.question.isEmpty || self.firstAnswer.isEmpty || self.secondAnswer.isEmpty || self.thirdAnswer.isEmpty || self.fourthAnswer.isEmpty {
+            return false
+        } else {
+            return true
+        }
     }
+    
+    func build(correctAnswer: Int) -> Question {
+        var answer = ""
+        switch correctAnswer {
+        case 0:
+            answer = self.firstAnswer
+        case 1:
+            answer = self.secondAnswer
+        case 2:
+            answer = self.thirdAnswer
+        case 3:
+            answer = self.fourthAnswer
+        default:
+            break
+        }
+        let question = Question(question: self.question,
+                                firstAnswer: self.firstAnswer,
+                                secondAnswer: self.secondAnswer,
+                                thirdAnswer: self.thirdAnswer,
+                                fourthAnswer: self.fourthAnswer,
+                                correctAnswer: answer)
+        return question
+    }
+    
 }
