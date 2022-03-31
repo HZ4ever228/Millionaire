@@ -11,12 +11,6 @@ class MainMenuViewController: UIViewController {
     
     let game = Game.shared
 
-    @IBOutlet weak var nameTextField: UITextField! {
-        didSet {
-            nameTextField.delegate = self
-            nameTextField.text = game.name
-        }
-    }
     @IBOutlet weak var lastResultLabel: UILabel! {
         didSet {
             lastResultLabel.isHidden = true
@@ -29,17 +23,16 @@ class MainMenuViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let text = nameTextField.text {
-            game.name = text
-        } else {
-            game.name = "default"
-        }
         switch segue.identifier {
         case "segueToScoreViewController":
             guard let destanation = segue.destination as? ScoreViewController else { return }
         case "segueToGameViewController":
             guard let destanation = segue.destination as? GameViewController else { return }
             destanation.delegate = self
+        case "segueToSettingsViewController":
+            guard let destanation = segue.destination as? SettingsViewController else { return }
+        case "segueToAddNewQuestionViewController":
+            guard let destanation = segue.destination as? AddNewQuestionViewController else { return }
         default:
             break
         }
@@ -49,21 +42,11 @@ class MainMenuViewController: UIViewController {
 
 //MARK: - Extensions
 
-extension MainMenuViewController: UITextFieldDelegate {
-    private func textFieldShouldEndEditing(_ textField: UITextField) {
-        if let text = nameTextField.text {
-            game.name = text
-        } else {
-            game.name = "default"
-        }
-    }
-}
-
 extension MainMenuViewController: LastGameResultProtocol {
     func returnLastGameResult(gameSession: GameSession?) {
         if let gameSession = gameSession {
             lastResultLabel.isHidden = false
-            lastResultLabel.text = "Последний результат: \(gameSession.score)"
+            lastResultLabel.text = "Последний результат: \(gameSession.score.value)"
         }
     }
 }

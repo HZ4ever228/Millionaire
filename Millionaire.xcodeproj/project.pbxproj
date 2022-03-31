@@ -25,6 +25,18 @@
 		4321378E27EA2DD00007810D /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321378D27EA2DD00007810D /* Record.swift */; };
 		4321379027EA35A30007810D /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321378F27EA35A30007810D /* Game.swift */; };
 		4321379327EA446E0007810D /* RecordsCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4321379227EA446E0007810D /* RecordsCaretaker.swift */; };
+		434E120427ED07B700318A54 /* QustionsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E120327ED07B700318A54 /* QustionsStrategy.swift */; };
+		434E120727ED0E1800318A54 /* QuestionsStrategiesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E120627ED0E1800318A54 /* QuestionsStrategiesEnum.swift */; };
+		434E120927ED1D3900318A54 /* NameCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E120827ED1D3900318A54 /* NameCaretaker.swift */; };
+		434E120B27ED1E8D00318A54 /* QuestionsSortStrategyCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E120A27ED1E8D00318A54 /* QuestionsSortStrategyCaretaker.swift */; };
+		434E120F27ED21D000318A54 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E120E27ED21D000318A54 /* SettingsViewController.swift */; };
+		434E121127ED290300318A54 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E121027ED290300318A54 /* Observable.swift */; };
+		434E121427EE856100318A54 /* AddNewQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E121327EE856100318A54 /* AddNewQuestionViewController.swift */; };
+		434E121727EE8BCF00318A54 /* QuestionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E121627EE8BCF00318A54 /* QuestionBuilder.swift */; };
+		434E121927EE8F6D00318A54 /* NewQustionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E121827EE8F6D00318A54 /* NewQustionTableViewCell.swift */; };
+		434E121B27EFCD5D00318A54 /* UserQuestionsCaretaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E121A27EFCD5D00318A54 /* UserQuestionsCaretaker.swift */; };
+		434E121F27F1290200318A54 /* UIViewController+presentAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E121E27F1290200318A54 /* UIViewController+presentAlert.swift */; };
+		434E122227F1A16600318A54 /* QuestionSellecterFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434E122127F1A16600318A54 /* QuestionSellecterFacade.swift */; };
 		43CA020B27EA779F00357DCF /* UIViewController+HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CA020A27EA779F00357DCF /* UIViewController+HideKeyboard.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +80,18 @@
 		4321378D27EA2DD00007810D /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		4321378F27EA35A30007810D /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		4321379227EA446E0007810D /* RecordsCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsCaretaker.swift; sourceTree = "<group>"; };
+		434E120327ED07B700318A54 /* QustionsStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QustionsStrategy.swift; sourceTree = "<group>"; };
+		434E120627ED0E1800318A54 /* QuestionsStrategiesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsStrategiesEnum.swift; sourceTree = "<group>"; };
+		434E120827ED1D3900318A54 /* NameCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCaretaker.swift; sourceTree = "<group>"; };
+		434E120A27ED1E8D00318A54 /* QuestionsSortStrategyCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsSortStrategyCaretaker.swift; sourceTree = "<group>"; };
+		434E120E27ED21D000318A54 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		434E121027ED290300318A54 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		434E121327EE856100318A54 /* AddNewQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewQuestionViewController.swift; sourceTree = "<group>"; };
+		434E121627EE8BCF00318A54 /* QuestionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBuilder.swift; sourceTree = "<group>"; };
+		434E121827EE8F6D00318A54 /* NewQustionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQustionTableViewCell.swift; sourceTree = "<group>"; };
+		434E121A27EFCD5D00318A54 /* UserQuestionsCaretaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuestionsCaretaker.swift; sourceTree = "<group>"; };
+		434E121E27F1290200318A54 /* UIViewController+presentAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentAlert.swift"; sourceTree = "<group>"; };
+		434E122127F1A16600318A54 /* QuestionSellecterFacade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSellecterFacade.swift; sourceTree = "<group>"; };
 		43CA020A27EA779F00357DCF /* UIViewController+HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+HideKeyboard.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,10 +143,10 @@
 		4321374C27E9DE280007810D /* Millionaire */ = {
 			isa = PBXGroup;
 			children = (
-				4321374D27E9DE280007810D /* AppDelegate.swift */,
 				4321374F27E9DE280007810D /* SceneDelegate.swift */,
+				434E121227ED295700318A54 /* Fundamental */,
 				43CA020927EA773700357DCF /* Extensions */,
-				4321379127EA442E0007810D /* RecordsCareTaker */,
+				4321379127EA442E0007810D /* DataCaretaker */,
 				4321378027E9E4320007810D /* Sourses */,
 				4321378327E9F2DE0007810D /* UI */,
 				4321375327E9DE280007810D /* Main.storyboard */,
@@ -154,6 +178,9 @@
 		4321378027E9E4320007810D /* Sourses */ = {
 			isa = PBXGroup;
 			children = (
+				434E122027F1A0C600318A54 /* Facade */,
+				434E121527EE8BB700318A54 /* Builder */,
+				434E120527ED084F00318A54 /* Strategies */,
 				4321378127E9E44B0007810D /* Question.swift */,
 				4321378F27EA35A30007810D /* Game.swift */,
 				4321378B27EA2B7F0007810D /* GameSession.swift */,
@@ -169,6 +196,8 @@
 				4321375127E9DE280007810D /* MainMenuViewController.swift */,
 				4321378927EA02330007810D /* GameViewController.swift */,
 				4321378727E9F44D0007810D /* ScoreViewController.swift */,
+				434E120E27ED21D000318A54 /* SettingsViewController.swift */,
+				434E121327EE856100318A54 /* AddNewQuestionViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -177,22 +206,61 @@
 			isa = PBXGroup;
 			children = (
 				4321378427E9F3100007810D /* ScoreTableViewCell.swift */,
+				434E121827EE8F6D00318A54 /* NewQustionTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		4321379127EA442E0007810D /* RecordsCareTaker */ = {
+		4321379127EA442E0007810D /* DataCaretaker */ = {
 			isa = PBXGroup;
 			children = (
 				4321379227EA446E0007810D /* RecordsCaretaker.swift */,
+				434E120827ED1D3900318A54 /* NameCaretaker.swift */,
+				434E120A27ED1E8D00318A54 /* QuestionsSortStrategyCaretaker.swift */,
+				434E121A27EFCD5D00318A54 /* UserQuestionsCaretaker.swift */,
 			);
-			path = RecordsCareTaker;
+			path = DataCaretaker;
+			sourceTree = "<group>";
+		};
+		434E120527ED084F00318A54 /* Strategies */ = {
+			isa = PBXGroup;
+			children = (
+				434E120327ED07B700318A54 /* QustionsStrategy.swift */,
+				434E120627ED0E1800318A54 /* QuestionsStrategiesEnum.swift */,
+			);
+			path = Strategies;
+			sourceTree = "<group>";
+		};
+		434E121227ED295700318A54 /* Fundamental */ = {
+			isa = PBXGroup;
+			children = (
+				4321374D27E9DE280007810D /* AppDelegate.swift */,
+				434E121027ED290300318A54 /* Observable.swift */,
+			);
+			path = Fundamental;
+			sourceTree = "<group>";
+		};
+		434E121527EE8BB700318A54 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				434E121627EE8BCF00318A54 /* QuestionBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		434E122027F1A0C600318A54 /* Facade */ = {
+			isa = PBXGroup;
+			children = (
+				434E122127F1A16600318A54 /* QuestionSellecterFacade.swift */,
+			);
+			path = Facade;
 			sourceTree = "<group>";
 		};
 		43CA020927EA773700357DCF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				43CA020A27EA779F00357DCF /* UIViewController+HideKeyboard.swift */,
+				434E121E27F1290200318A54 /* UIViewController+presentAlert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -328,19 +396,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				434E121127ED290300318A54 /* Observable.swift in Sources */,
 				4321378827E9F44D0007810D /* ScoreViewController.swift in Sources */,
+				434E121B27EFCD5D00318A54 /* UserQuestionsCaretaker.swift in Sources */,
+				434E120927ED1D3900318A54 /* NameCaretaker.swift in Sources */,
+				434E120B27ED1E8D00318A54 /* QuestionsSortStrategyCaretaker.swift in Sources */,
+				434E121927EE8F6D00318A54 /* NewQustionTableViewCell.swift in Sources */,
 				4321379327EA446E0007810D /* RecordsCaretaker.swift in Sources */,
+				434E121F27F1290200318A54 /* UIViewController+presentAlert.swift in Sources */,
 				4321378C27EA2B7F0007810D /* GameSession.swift in Sources */,
 				4321378E27EA2DD00007810D /* Record.swift in Sources */,
 				4321378227E9E44B0007810D /* Question.swift in Sources */,
+				434E120727ED0E1800318A54 /* QuestionsStrategiesEnum.swift in Sources */,
+				434E121727EE8BCF00318A54 /* QuestionBuilder.swift in Sources */,
 				4321375227E9DE280007810D /* MainMenuViewController.swift in Sources */,
+				434E122227F1A16600318A54 /* QuestionSellecterFacade.swift in Sources */,
 				4321375827E9DE280007810D /* Millionaire.xcdatamodeld in Sources */,
 				4321379027EA35A30007810D /* Game.swift in Sources */,
 				43CA020B27EA779F00357DCF /* UIViewController+HideKeyboard.swift in Sources */,
 				4321378A27EA02330007810D /* GameViewController.swift in Sources */,
+				434E120427ED07B700318A54 /* QustionsStrategy.swift in Sources */,
+				434E121427EE856100318A54 /* AddNewQuestionViewController.swift in Sources */,
 				4321374E27E9DE280007810D /* AppDelegate.swift in Sources */,
 				4321378527E9F3100007810D /* ScoreTableViewCell.swift in Sources */,
 				4321375027E9DE280007810D /* SceneDelegate.swift in Sources */,
+				434E120F27ED21D000318A54 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

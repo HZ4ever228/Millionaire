@@ -9,7 +9,7 @@ import UIKit
 
 class ScoreViewController: UIViewController {
     
-    let game = Game.shared
+    let records = Game.shared.records
 
     @IBOutlet weak var scoreTableView: UITableView! {
         didSet {
@@ -31,12 +31,12 @@ class ScoreViewController: UIViewController {
 
 extension ScoreViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return game.records.count
+        return records.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ScoreTableViewCell.reuseIdentifier, for: indexPath) as? ScoreTableViewCell {
-            let record = game.records[indexPath.row]
+            let record = records[indexPath.row]
             
             if let score = record.score {
                 cell.scoreLabel.text = String(score)
